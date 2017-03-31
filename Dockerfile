@@ -6,6 +6,6 @@ COPY cert_defaults.txt /src/cert_defaults.txt
 RUN openssl req -x509 -nodes -out /src/cert.pem -keyout /src/cert.key -config /src/cert_defaults.txt
 
 FROM nginx
-COPY --from=0 /src/*.pem /etc/nginx/
+COPY --from=0 /src/cert.* /etc/nginx/
 COPY default.conf /etc/nginx/conf.d/
 EXPOSE 443
